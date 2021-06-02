@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+<div class="container">
+<h1>List Student</h1>
+<button class="btn btn-success" ><a href="/spring-hoa/createStudent.html" style="color: lavenderblush;text-decoration: none">Create</a></button>
+<table class="table">
+<thead>
+<tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Wage</th>
+    <th>Action</th>
+</tr>
+</thead>
+    <tbody id="result">
+
+    </tbody>
+</table>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $.get({
+        url:'http://localhost:8888/employees',
+        method: 'GET',
+        success: function (data){
+            let result = '';
+            for (let i = 0;i<data.length;i++){
+                result +=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].wage}</td><td><button class="btn btn-danger">Xóa</button><button
+class="btn btn-warning">Sửa</button></td></tr>`
+        }
+            $('#result').html(result);
+
+    },
+    error:function (){
+            alert('Error');
+    }
+
+    })
+</script>
+</body>
+</html>
